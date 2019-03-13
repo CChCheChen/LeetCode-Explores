@@ -1,0 +1,10 @@
+package a_array;
+
+public class D_Largest_Number_At_Least_Twice_Of_Others {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

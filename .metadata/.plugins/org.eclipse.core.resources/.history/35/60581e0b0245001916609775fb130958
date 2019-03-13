@@ -1,0 +1,10 @@
+package b_array2D;
+
+public class B_Diagonal_Traverse {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

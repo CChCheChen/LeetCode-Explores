@@ -1,0 +1,29 @@
+package a_array;
+
+public class C_Find_Pivot_Index {
+
+	public static void main(String[] args) {
+		int[] nums = {-1,-1,0,1,1,0};
+		System.out.println("Pivot Index = " + pivotIndex(nums));  
+		
+	} 
+	
+    public static int pivotIndex(int[] nums) {
+    	int sum = 0;
+    	int sumLeft = 0;
+    	
+    	for(int i : nums)
+    		sum += i;
+    	
+    	for(int i=0; i<nums.length; i++) {
+    		if(sumLeft == (sum-nums[i]-sumLeft))
+    			return i;
+    		
+    		sumLeft += nums[i];
+    	}
+    	
+    	return -1;
+    	
+    }
+
+}
