@@ -1,5 +1,7 @@
-*/.metadata/
-*
+/.metadata/
+
+
 /.recommenders/
 
-*/RemoteSystemTempFiles/
+
+/RemoteSystemsTempFiles/
