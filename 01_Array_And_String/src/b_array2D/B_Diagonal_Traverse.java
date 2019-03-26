@@ -23,8 +23,108 @@ The total number of elements of the given matrix will not exceed 10,000.
 public class B_Diagonal_Traverse {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		int rows = 3;
+		int cols= 4;
+		int[][] input = new int[rows][cols];
+		
+		input[0] = new int[]{1, 2, 3, 4};
+		input[1] = new int[]{5, 6, 7, 8};
+		input[2] = new int[]{9, 10, 11, 12};
+		
+		System.out.println("Before Traversing:");
+		for(int i=0; i<rows; i++) {
+			for(int j=0; j<cols; j++) {
+				System.out.print(input[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+		int[] output = diagonalTraverse(input, rows, cols);
+		for(int i : output)
+			System.out.print(i + " ");
 
+	}
+
+	private static int[] diagonalTraverse(int[][] input, int rows, int cols) {
+		int rowIndex = 0;
+		int colIndex = 0;
+		int outputIndex = 0;
+		
+		boolean positiveDir = true;// positive direction is up-right direction
+		                           //!positive direction is bottom-left direction
+		
+		int[] output = new int[rows*cols];
+
+		while(rowIndex<rows && colIndex<cols) {
+
+			output[outputIndex] = input[rowIndex][colIndex];
+			System.out.println(input[rowIndex][colIndex]);
+			
+			if((rowIndex == 0 || rowIndex == rows-1) && colIndex<cols-1) {
+				colIndex++;
+				outputIndex++;
+				output[outputIndex] = input[rowIndex][colIndex];
+				
+				if(rowIndex == 0) {
+					positiveDir = false;
+					rowIndex++;
+					colIndex--;
+				}else {
+					positiveDir = true;
+					rowIndex--;
+					colIndex++;
+				}
+				
+				outputIndex++;
+				
+			}else if((colIndex == 0 || colIndex == cols-1) && rowIndex<rows-1) {
+				rowIndex++;
+				outputIndex++;
+				output[outputIndex] = input[rowIndex][colIndex];
+				
+				if(colIndex == 0) {
+					positiveDir = true;
+					rowIndex--;
+					colIndex++;
+				}else {
+					positiveDir = false;
+					rowIndex++;
+					colIndex--;
+				}
+				
+				outputIndex++;
+				
+			}else {
+				if(positiveDir) {
+					rowIndex--;
+					colIndex++;
+					
+				}else{
+					rowIndex++;
+					colIndex--;
+				}
+				
+				outputIndex++;
+			}
+			
+			System.out.println("rowIndex=" + rowIndex + " && colIndex=" + colIndex);
+			System.out.println("positiveDir=" + positiveDir);
+		}
+		
+		return output;
+	}
+
+	public static void helper(boolean positiveDir, int rowIndex, int colIndex, int outputIndex) {
+		if(positiveDir) {
+			rowIndex--;
+			colIndex++;
+			
+		}else{
+			rowIndex++;
+			colIndex--;
+		}
+		
+		outputIndex++;
 	}
 
 }
