@@ -23,13 +23,13 @@ The total number of elements of the given matrix will not exceed 10,000.
 public class B_Diagonal_Traverse {
 
 	public static void main(String[] args) {
-		int rows = 3;
-		int cols= 4;
+		int rows = 1;
+		int cols= 3;
 		int[][] input = new int[rows][cols];
 		
-		input[0] = new int[]{1, 2, 3, 4};
-		input[1] = new int[]{5, 6, 7, 8};
-		input[2] = new int[]{9, 10, 11, 12};
+		input[0] = new int[]{1, 2, 3};
+		//input[1] = new int[]{4, 5, 6};
+		//input[2] = new int[]{7, 8, 9};
 		
 		System.out.println("Before Traversing:");
 		for(int i=0; i<rows; i++) {
@@ -66,13 +66,18 @@ public class B_Diagonal_Traverse {
 				output[outputIndex] = input[rowIndex][colIndex];
 				
 				if(rowIndex == 0) {
-					positiveDir = false;
-					rowIndex++;
-					colIndex--;
+					if(rows > 1) {
+						rowIndex++;
+						colIndex--;
+						positiveDir = false;
+					}else {
+						colIndex++;
+					}
+					
 				}else {
-					positiveDir = true;
 					rowIndex--;
-					colIndex++;
+				    colIndex++;
+					positiveDir = true;
 				}
 				
 				outputIndex++;
@@ -83,13 +88,18 @@ public class B_Diagonal_Traverse {
 				output[outputIndex] = input[rowIndex][colIndex];
 				
 				if(colIndex == 0) {
-					positiveDir = true;
-					rowIndex--;
-					colIndex++;
+					if(cols > 1) {
+						colIndex++;
+						rowIndex--;
+						positiveDir = true;
+					}else {
+						rowIndex++;
+					}
+					
 				}else {
-					positiveDir = false;
 					rowIndex++;
 					colIndex--;
+					positiveDir = false;
 				}
 				
 				outputIndex++;
